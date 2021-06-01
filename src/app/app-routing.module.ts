@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { FileUploadComponent } from './views/file-upload/file-upload.component';
 import { LoginComponent } from './views/login/login.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'login', pathMatch:'full'},
   { path:'login', component:LoginComponent},
-  { path:'dashboard', component:DashboardComponent}
+  { path:'file-upload', component:FileUploadComponent}
 
 ];
 
@@ -17,4 +17,4 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 
-export const routingComponents = [LoginComponent, DashboardComponent];
+export const routingComponents = [LoginComponent, FileUploadComponent];

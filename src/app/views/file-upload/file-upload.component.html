@@ -1,0 +1,13 @@
+
+<mat-vertical-stepper linear>
+        <mat-step label="Validar formato">
+            <app-format-validation></app-format-validation>
+        </mat-step>
+        <mat-step label="Seleccionar empresa">
+            <app-company-upload></app-company-upload>
+            <hr>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </mat-step>
+</mat-vertical-stepper>
+

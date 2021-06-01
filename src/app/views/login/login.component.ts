@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ApiService } from '../../services/api/api.service';
+import { LoginI } from '../../models/login.interface';
+import { ResponseI } from '../../models/response.interface';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,16 +15,37 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm = new FormGroup({
-    usuario :  new FormControl ('', Validators.required),
+    user :  new FormControl ('', Validators.required),
     password : new FormControl('', Validators.required)
   });
 
-  constructor() { }
+  constructor( private api:ApiService, private router:Router) { }
+
+  errorStatus:boolean = false;
+  errorMsg:any = "";
 
   ngOnInit(): void {
+    this.checkLocalStorage();
   }
 
-  onLogin(form: any){
-    console.log(form);
+  checkLocalStorage(){
+    if(localStorage.getItem("token")){
+      this.router.navigate(["file-upload"]);
+    }
+  }
+
+  onLogin(form: LoginI){
+    //console.log(form);
+    this.api.login(form).subscribe(data => {
+      let response:ResponseI = data;
+
+      if(response.status == "OK"){
+        localStorage.setItem("token",response.result.token);
+        this.router.navigate(["file-upload"]);
+      }else{
+        this.errorStatus = true;
+        this.errorMsg = response.result;
+      }
+    });
   }
 }

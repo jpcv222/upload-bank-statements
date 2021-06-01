@@ -1,0 +1,7 @@
+<h1>Seleccionar empresa</h1>
+<mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select>
+      <mat-option *ngFor = "let company of companies" [value]="company.id_company">{{ company.name_company }}</mat-option>
+    </mat-select>
+  </mat-form-field>
