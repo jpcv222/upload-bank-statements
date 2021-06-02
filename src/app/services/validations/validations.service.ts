@@ -18,20 +18,27 @@ export class ValidationsService {
     if(!(row.length >= format.min_column_number && 
       row.length <= format.max_column_number)){
 
-        response.push({"status":false,
+        response.push({
         "row":number_row,
         "message":"Cantidad de columnas erróneas"});
-
+        
       }
-
+     
     //Validate date field and date format
-    if(!(row[format.date_position] !== undefined)){
+    if(row[format.date_position] !== undefined){
+        if(row[format.date_position]){
 
-        response.push({"status":false,
+        }
+        response.push({
         "row":number_row,
         "message":"Formato de fecha no válido"});
 
+      }else{
+        response.push({
+          "row":number_row,
+          "message":"Fecha no ingresada"});
       }
+     /*
 
     //Validate reference field and reference format
     for(let j = 0; format.reference_position.length; j++){
@@ -68,7 +75,14 @@ export class ValidationsService {
       "message":"Formato de ingreso no válido"});
 
     }
+    */
 
+    return response;
+  }
+
+  isDate(date:string,format:string): boolean{
+    let pattern = new RegExp(format);
+    return pattern.test(date);
   }
 
   isNumber(n: any): boolean{
