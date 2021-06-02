@@ -67,7 +67,13 @@ export class FormatValidationComponent implements OnInit {
       let response:FileFormatI = data;
 
       if(response != null && response != undefined){
-        this.validateFormatRows(response, this.csvRecords);
+
+        let validation_result = this.validateFormatRows(response, this.csvRecords);
+        if(validation_result.length !== 0){
+          console.log(validation_result);
+        }else{
+          console.log("Formato válido");
+        }
       }else{
         this.errorStatus = true;
         this.errorMsg = "Formato de archivo no válido";
@@ -75,13 +81,16 @@ export class FormatValidationComponent implements OnInit {
     });
   }
 
-  validateFormatRows(format: FileFormatI, records: any){
+  validateFormatRows(format: FileFormatI, records: any): any {
     let response: any[] = [];
     for(let i = 0; i < records.length; i++){
-      response.push(this.validations.validateRow(format, records[i], i));
+      let row_validation_result = this.validations.validateRow(format, records[i], i);
+      if(row_validation_result.length != 0){
+        response.push(row_validation_result);
+      }
     }
 
-    console.log(response);
+    return response;
   }
 
   showActiveBanks(){
