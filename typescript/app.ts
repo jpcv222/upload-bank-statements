@@ -21,6 +21,26 @@
   "COMISION REGPR",
   "COMISION TOKEN 1"];
 
+  const payments_examples: string[] = ["SPEI Enviado:",
+  "Doc. Pagado por Camara de Compensacion",
+  "Documento Pagado en Efectivo",
+  "Pago de Servicios",
+  "Retiro de Recursos",
+  "Retiro para deposito en Otra Cuenta",
+  "Retiro por Cheque Certificados",
+  "Retiro por domiciliacion",
+  "Retiro por operacion cambios",
+  "Retiro X OperaciÃ³n de Mesa de Dinero",
+  "Retiros miscelaneos",
+  "SPEI Enviado",
+  "Recibo #",
+  "Pago de impuestos RFC",
+  "PAGO DE NOMINA",
+  "TRASPASO A TERCEROS",
+  "PAGO DE AGUINALDO",
+  "CARGO NOMINA",
+  "PAGO -"]
+
   let com_exp= '^com.*'
 
   test_regexp(com_exp,examples_comision);
@@ -28,6 +48,10 @@
   let com_men_exp=com_exp+'mensualidad$'
 
   test_regexp(com_men_exp,examples_comision);
+
+  let payments_exp='(pag(o|a))|(retiro)|(spei)|(recibo)|(traspaso)|(cargo)'
+
+  test_regexp(payments_exp,payments_examples);  
 
   function test_regexp(str_regexp:string,examples:string[]) {
     let regexp = new RegExp(str_regexp);  
