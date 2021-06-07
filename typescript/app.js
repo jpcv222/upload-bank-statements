@@ -39,12 +39,21 @@
         "PAGO DE AGUINALDO",
         "CARGO NOMINA",
         "PAGO -"];
+    const dates_examples = ["2/4/2212", "12/11/2122"];
     let com_exp = '^com.*';
     test_regexp(com_exp, examples_comision);
     let com_men_exp = com_exp + 'mensualidad$';
     test_regexp(com_men_exp, examples_comision);
     let payments_exp = '(pag(o|a))|(retiro)|(spei)|(recibo)|(traspaso)|(cargo)';
     test_regexp(payments_exp, payments_examples);
+    let dates_exp = '^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$';
+    exec_regexp(dates_exp, dates_examples);
+    function exec_regexp(str_regexp, examples) {
+        let regexp = new RegExp(str_regexp);
+        examples.forEach(function (example) {
+            console.log(str_regexp + ' - ' + example + ' : ' + regexp.exec(example.toLocaleLowerCase()));
+        });
+    }
     function test_regexp(str_regexp, examples) {
         let regexp = new RegExp(str_regexp);
         examples.forEach(function (example) {
