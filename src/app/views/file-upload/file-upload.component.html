@@ -1,13 +1,17 @@
+<mat-grid-list cols="4" rowHeight="100%">
+    <mat-grid-tile [colspan]="1">
+        <mat-vertical-stepper linear>
+            <mat-step label="Validar formato">
+                <app-format-validation></app-format-validation>
+            </mat-step>
+            <mat-step label="Simular carga">
+                Cuidado
+            </mat-step>
+        </mat-vertical-stepper>
+    </mat-grid-tile>
+    <mat-divider [vertical]="true"></mat-divider>
+    <mat-grid-tile  [colspan]="3">
+        <app-movements-table [ngStyle]="{'width': '90%'}"></app-movements-table>
+    </mat-grid-tile>
 
-<mat-vertical-stepper linear>
-        <mat-step label="Validar formato">
-            <app-format-validation></app-format-validation>
-        </mat-step>
-        <mat-step label="Seleccionar empresa">
-            <app-company-upload></app-company-upload>
-            <hr>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
-        </mat-step>
-</mat-vertical-stepper>
-
+</mat-grid-list>

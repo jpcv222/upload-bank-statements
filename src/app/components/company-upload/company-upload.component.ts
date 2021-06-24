@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 import { CompanyI } from '../../models/company.interface';
 
@@ -16,7 +17,12 @@ export class CompanyUploadComponent implements OnInit {
 
   companies: CompanyI[] =  [{id_company: 0, rfc: "",name_company:""}];
 
-  constructor(private api: ApiService) {
+  companyForm = this.fb.group({
+    id_company: ['', [Validators.required]]
+  });
+
+  constructor(private api: ApiService,
+              private fb: FormBuilder) {
    }
 
   ngOnInit(): void {
@@ -31,5 +37,8 @@ export class CompanyUploadComponent implements OnInit {
     });
   }
 
+  onSubmit() {
+    console.log(JSON.stringify(this.companyForm.value));
+  }
 
 }
