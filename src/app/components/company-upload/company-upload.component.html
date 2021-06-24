@@ -1,7 +1,31 @@
-<h1>Seleccionar empresa</h1>
-<mat-form-field appearance="fill">
-    <mat-label>Select</mat-label>
-    <mat-select>
-      <mat-option *ngFor = "let company of companies" [value]="company.id_company">{{ company.name_company }}</mat-option>
-    </mat-select>
-  </mat-form-field>
+<mat-card>
+
+  <mat-card-title>
+    Seleccionar empresa
+  </mat-card-title>
+
+  <mat-card-content>
+    <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select formControlName="id_company">
+          <mat-option value="" disabled> Seleccione banco</mat-option>
+          <mat-option *ngFor="let company of companies" [value]="company.id_company">{{ company.name_company }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div>
+        <mat-divider></mat-divider>
+      </div>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext type="submit" color="primary">Cargar archivo</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+
+</mat-card>

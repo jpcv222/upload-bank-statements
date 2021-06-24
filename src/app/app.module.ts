@@ -10,6 +10,10 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { CompanyUploadComponent } from './components/company-upload/company-upload.component';
 import { FormatValidationComponent } from './components/format-validation/format-validation.component';
+import { MovementsTableComponent } from './components/movements-table/movements-table.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,8 @@ import { FormatValidationComponent } from './components/format-validation/format
     FooterComponent,
     routingComponents,
     CompanyUploadComponent,
-    FormatValidationComponent
+    FormatValidationComponent,
+    MovementsTableComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +52,9 @@ import { FormatValidationComponent } from './components/format-validation/format
     MatProgressBarModule, 
     MatStepperModule,
     MatSelectModule,
+    MatGridListModule,
+    MatTableModule,
+    MatPaginatorModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatDividerModule, 
