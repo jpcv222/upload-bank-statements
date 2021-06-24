@@ -1,39 +1,47 @@
 <mat-card>
 
   <mat-card-title>
-    Seleccionar banco
+    Validación de archivo bancario
   </mat-card-title>
 
   <mat-card-content>
-    <form [formGroup]="bankForm" (ngSubmit)="onSubmit()"> 
-  
+    <form [formGroup]="bankForm" (ngSubmit)="onSubmit()">
+
       <mat-form-field appearance="fill">
         <mat-label>Select</mat-label>
-            <mat-select formControlName = "id_bank">
-              <mat-option value="" disabled> Seleccione banco</mat-option>
-              <mat-option *ngFor = "let bank of banks" [value]="bank.id_bank">{{ bank.name_bank }}</mat-option>
-            </mat-select>
+        <mat-select formControlName="id_bank">
+          <mat-option value="" disabled> Seleccione banco</mat-option>
+          <mat-option *ngFor="let bank of banks" [value]="bank.id_bank">{{ bank.name_bank }}</mat-option>
+        </mat-select>
       </mat-form-field>
-    
-      <div>
+
+      <div class="divider">
         <mat-divider></mat-divider>
       </div>
-    
-      <div class="csv-file-chooser-section ">
-        <input type="file" #fileImportInput name="File Upload" id="csvFileUpload" 
-        formControlName = "file" (change)="fileChangeListener($event)" accept=".csv" /> 
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select formControlName="id_company">
+          <mat-option value="" disabled> Seleccione empresa</mat-option>
+          <mat-option *ngFor="let company of companies" [value]="company.id_company">{{ company.name_company }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="divider">
+        <mat-divider></mat-divider>
       </div>
-    
+
+      <div class="csv-file-chooser-section file-upload">
+        <input type="file" class="ng-hide" #fileImportInput name="File Upload" id="csvFileUpload" formControlName="file"
+          (change)="fileChangeListener($event)" accept=".csv" />
+      </div>
+
       <div>
-        <button mat-button matStepperNext type="submit"
-         color="primary">Next</button>
+        <button mat-button matStepperNext type="submit" color="primary">Validar archivo</button>
       </div>
-    
+
     </form>
   </mat-card-content>
 
 </mat-card>
-
-
-
-  
